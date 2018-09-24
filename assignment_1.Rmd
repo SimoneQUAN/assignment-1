@@ -1,0 +1,16 @@
+---
+title: "Assignment 1"
+author: "Songnan QUAN"
+date: "2018/9/24"
+output: html_document
+---
+
+## Exercise 1
+
+## Exercice 2
+
+## Exercice 3
+
+## Exercice 4
+
+## Exercice 5
