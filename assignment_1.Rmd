@@ -6,8 +6,38 @@ output: html_document
 ---
 
 ## Exercise 1
+R is a free software environment for statistical computing and graphics.
 
 ## Exercice 2
+```{r}
+possible_outcomes <- c(0, 1, 2, 3, 4, 5)
+outcome_probabilities <- c(0.1, 0.5, 0.2, 0.1, 0.05, 0.05)
+n_data_points <- 400
+set.seed(1)
+fake_data_points <- sample(possible_outcomes,
+                           n_data_points,
+                           replace=T,
+                           prob=outcome_probabilities)
+set.seed(NULL)
+fake_data_set <- tibble::data_frame(`Fake measurement`=fake_data_points)
+```
+
+```{r}
+ggplot2::ggplot(fake_data_set, ggplot2::aes(x=`Fake measurement`)) + ggplot2::geom_histogram(bins=5, colour="black", fill="lightgrey")
+```
+
+Statement 1. pass
+  
+Statement 2. this assgnment is exactely like the first line, which is most probably 
+
+Statement 3.
+
+Statement 4.
+
+Statement 5
+
+Statement 6
+
 
 ## Exercice 3
 
