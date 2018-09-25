@@ -5,6 +5,7 @@ date: "2018/9/24"
 output: html_document
 ---
 
+
 ## Exercise 1
 R is a free software environment for statistical computing and graphics.
 
@@ -40,6 +41,14 @@ Statement 6
 
 
 ## Exercice 3
+```{r}
+source("functions.R")
+
+print(sum_column(iris, "Sepal.Length"))
+print(sum_column(iris, "Species"))
+print(sum_column(warpbreaks, "breaks"))
+```
+
 
 ## Exercice 4
 
