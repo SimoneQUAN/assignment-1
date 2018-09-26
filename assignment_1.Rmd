@@ -85,4 +85,24 @@ print(my_mean(warpbreaks$breaks))
 
 ## Exercice 4
 
+### Sub-exercise 4-a
+```{r}
+print(grouped_violin_plot(iris, "Sepal.Length", "Species"))
+```
+
+### Sub-exercise 4-b
+```{r}
+p <- grouped_violin_plot(iris, "Sepal.Length", "Species")
+# YOUR CODE HERE: Change the colour scheme for the interior of the three violin plots
+#                 to anything else at all.
+p <- p + ggplot2::scale_fill_manual(values=c("yellow","blue","brown"))
+# YOUR CODE HERE: Add a main title that says "Iris data".
+p <- p + ggplot2::labs(title="Iris data")
+
+print(p)
+```
+
+
+
+
 ## Exercice 5
