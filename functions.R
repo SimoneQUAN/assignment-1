@@ -1,3 +1,4 @@
+# function for Sub-exercise 3-a
 # Sum values in a column of a data frame.
 #
 # ARGUMENTS:
@@ -8,28 +9,89 @@
 # if the specified column exists and contains numbers, returns the sum of
 # all values in the column; otherwise, returns NULL
 sum_column <- function(d, var) {
-  # Set a default value to return
   result <- NULL
-  x <- d[[var]] # Remember, as we showed in class: there are two ways
-  # to access a column, and this is one; you should try
-  # and figure out why the other way won't work here,
-  # but that's not part of the homework
-  if (!is.null(x)) { # This tests to see whether the column exists in
-    # d; again, you should try and find a way to test
-    # this out for yourself to verify that it's true,
-    # but that's not part of the homework
-    # YOUR CODE HERE: if x contains numbers, set the variable
-    # result to be the sum of the values in x
-    if (check_numeric(x)) {
+  x <- d[[var]] 
+  if (!is.null(x)) {
+    if (is.numeric(x)) {
       result <- sum(x)
     }
-    # You will need to do a bit of research in order to figure out how
-    # to test whether a vector contains numbers.
   }
-  # YOUR CODE HERE: return the result
   return(result)
 }
 
-my_sum <- function(vecteur) {
-  for ()
+
+# function for Sub-exercise 3-b
+# Sum values in a vector.
+#
+# ARGUMENTS:
+# x: a vector
+#
+# RETURN VALUE:
+# if the vector contains numbers, returns the sum of
+# all values; otherwise, returns NULL
+#
+# [YOUR FUNCTION HERE]
+my_sum <- function(x) {
+  # set a default value to return
+  result <- NULL
+  # this tests whether the vector is null
+  if (!is.null(x)) {
+    # this tests whether the vector contains numbers
+    if (is.numeric(x)) {
+      # set the variable result to be 0
+      result <- 0
+      # then iterate the vector
+      for (number in x) {
+        # sum up every element in this vector
+        result <- result + number
+      }
+    }
+  }
+  # return the final result
+  return(result)
+}
+
+
+# function for Sub-exercise 3-c
+# Sum values in a vector then divide by another number 
+#
+# ARGUMENTS:
+# x: a vector
+# k: a number
+#
+# RETURN VALUE:
+# if the vector contains numbers, returns the sum of
+# all values divided by a number k; otherwise, returns NULL
+# we should note that k can not be 0 and its length is 1
+#
+# [YOUR FUNCTION HERE]
+sum_divided_by <- function(x, k) {
+  # do the calculate unless k is a number!=0 and the result of my_sum(x)!=NULL
+  if (is.numeric(k) && !is.null(my_sum(x)) && k!=0) {
+    # return the result of division
+    return(my_sum(x)/k)
+  # the other cases
+  }else{
+    # return NULL
+    return(NULL)
+  }
+}
+
+
+# function for Sub-exercise 3-d
+# Give the mean of a vector
+#
+# ARGUMENTS:
+# x: a vector
+#
+# RETURN VALUE:
+# if the vector contains numbers, returns the mean of
+# all values of this vector; otherwise, returns NULL
+#
+# [YOUR FUNCTION HERE]
+my_mean <- function(x) {
+  if (!is.null(my_sum(x))) {
+    return(sum_divided_by(x, length(x)))
+  }
+  return(NULL)
 }
