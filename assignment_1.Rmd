@@ -103,6 +103,41 @@ print(p)
 ```
 
 
-
-
 ## Exercice 5
+
+### Sub-exercise 5-a
+```{r}
+difference_in_medians(iris, "Sepal.Width", "Species", "versicolor", "virginica")
+difference_in_medians(iris, "Sepal.Width", "Species", "virginica", "virginica")
+```
+
+### Sub-exercise 5-b
+```{r}
+iris$Sepal.Width[1:10]
+if(!exists(".Random.seed")) set.seed(NULL)
+previous_seed <- .Random.seed
+set.seed(1)
+randomize(iris, "Sepal.Width")$Sepal.Width[1:10]
+randomize(iris, "Species")$Species[1:10]
+randomize(iris, "Species")$Sepal.Width[1:10]
+set.seed(previous_seed)
+```
+
+### Sub-exercise 5-c
+```{r}
+if(!exists(".Random.seed")) set.seed(NULL)
+previous_seed <- .Random.seed
+set.seed(1)
+ptest_1 <- permutation_twogroups(iris, "Sepal.Width", "Species", "versicolor","virginica", difference_in_medians, n_samples=10)
+ptest_2 <- permutation_twogroups(iris, "Sepal.Width", "Species", "versicolor","virginica", difference_in_medians, n_samples=10)
+ptest_3 <- permutation_twogroups(randomize(iris, "Sepal.Width"), "Sepal.Width","Species", "versicolor", "virginica",difference_in_medians, n_samples=10)
+set.seed(previous_seed)
+print(ptest_1)
+print(ptest_2)
+print(ptest_3)
+print(ptest_3$observed)
+print(ptest_3[["observed"]])
+
+```
+
+### Sub-exercise 5-d
