@@ -30,11 +30,11 @@ ggplot2::ggplot(fake_data_set, ggplot2::aes(x=`Fake measurement`)) + ggplot2::ge
 
 Statement 1. pass
   
-Statement 2. this assgnment is exactely like the first line, which is most probably 
+Statement 2. this assignment is exactely like the first line, which creates a vector of numbers (floats) called "outcome_probabilities". I think it contains all the probabilities for each possible outcome in the first line, because it's called "outcome_probabilities", its length is exactly like the first vector, these numbers are between 0 and 1, and their sum equals 1.
 
-Statement 3.
+Statement 3. this line creates a new varaible "n_data_points" and sets its value as 400. Maybe this variable is for 400 distributions of the possible outcomes.
 
-Statement 4.
+Statement 4. this statement 
 
 Statement 5
 
@@ -141,3 +141,19 @@ print(ptest_3[["observed"]])
 ```
 
 ### Sub-exercise 5-d
+### Sub-exercise 5-e
+
+```{r}
+if(!exists(".Random.seed")) set.seed(NULL)
+previous_seed <- .Random.seed
+set.seed(1)
+ptest <- permutation_twogroups(iris, "Sepal.Width", "Species", "versicolor","virginica", difference_in_medians)
+set.seed(previous_seed)
+```
+
+```{r}
+ptest_d <- tibble::as_tibble(ptest["permuted"])
+# YOUR CODE HERE: plot a histogram with a vertical line at the observed value
+
+```
+
