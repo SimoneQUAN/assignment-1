@@ -155,8 +155,8 @@ difference_in_medians <- function(d, var, grouping_var, group1, group2) {
 # function for Sub-exercise 5-b
 # function to generate a shuffled version of a vector
 randomize_rts <- function(d){
-  n <- length(d)
-  result <- sample(d, n)
+  # the coding doesn't work so I've changed it a little bit
+  result <- sample(d, length(d))
   return(result)
 }
 # Randomize the order of a column.
@@ -172,6 +172,7 @@ randomize_rts <- function(d){
 #
 randomize <- function(d, var) {
   # YOUR CODE HERE: generate a shuffled version of d[[var]]
+  # sample : take a number randomly from d[[var]] and doesn't put it back
   d[[var]] <- randomize_rts(d[[var]])
   return(d)  
 }
