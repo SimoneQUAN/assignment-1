@@ -220,3 +220,20 @@ permutation_twogroups <- function(d, var, grouping_var, group1, group2, statisti
   return(result)
 }
 
+
+# function for Sub-exercise 5-d
+# Perform a permutation test for two groups.
+
+permutation_twogroups_2 <- function(d, var, grouping_var, group1, group2, statistic,
+                                  n_samples=9999) {
+  observed_statistic <- statistic(d, var, grouping_var, group1, group2)
+  permutation_statistics <- rep(0, n_samples)
+  for (i in 1:n_samples) {
+    # the only difference between the function 5-c and 5-d is that we randomize on grouping_var instead of var
+    new_data <- randomize(d, grouping_var)
+    permutation_statistics[i] <- statistic(new_data, var, grouping_var, group1, group2)
+  }
+  result <- list(observed=observed_statistic,
+                 permuted=permutation_statistics)
+  return(result)
+}

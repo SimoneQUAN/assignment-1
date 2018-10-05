@@ -179,8 +179,23 @@ print(ptest_3[["observed"]])
 
 
 ### Sub-exercise 5-d
+I would like to test the result via changing the function randomize() and creating a new function permutation_twogroups_2. By testing this function, I found that the results are not the same, so I suppose that the variable chosen matters for my permutation test. But I don't know exactly why this happens.
 
 
+```{r}
+if(!exists(".Random.seed")) set.seed(NULL)
+previous_seed <- .Random.seed
+set.seed(1)
+ptest_1 <- permutation_twogroups_2(iris, "Sepal.Width", "Species", "versicolor","virginica", difference_in_medians, n_samples=10)
+ptest_2 <- permutation_twogroups_2(iris, "Sepal.Width", "Species", "versicolor","virginica", difference_in_medians, n_samples=10)
+ptest_3 <- permutation_twogroups_2(randomize(iris, "Sepal.Width"), "Sepal.Width","Species", "versicolor", "virginica",difference_in_medians, n_samples=10)
+set.seed(previous_seed)
+print(ptest_1)
+print(ptest_2)
+print(ptest_3)
+print(ptest_3$observed)
+print(ptest_3[["observed"]])
+```
 
 ### Sub-exercise 5-e
 
@@ -194,9 +209,9 @@ set.seed(previous_seed)
 
 ```{r}
 ptest_d <- tibble::as_tibble(ptest["permuted"])
-observed_value <- ptest["observed"]
+line_value <- ptest["observed"]
 # YOUR CODE HERE: plot a histogram with a vertical line at the observed value
-
-
+ggplot2::ggplot(data=ptest_d, mapping=ggplot2::aes(x=permuted)) + ggplot2::geom_histogram(color="black", fill="orange") + ggplot2::geom_vline(ggplot2::aes(xintercept=line_value[[1]]))
 ```
 
+Conclusion : the shape of this plot is a little bit like the normal distribution, which may indicate that the difference between 2 groups is quiet small (not sure about it).
