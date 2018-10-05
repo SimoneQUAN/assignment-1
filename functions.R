@@ -212,8 +212,11 @@ permutation_twogroups <- function(d, var, grouping_var, group1, group2, statisti
     # YOUR CODE HERE: use randomize(...) to create a permutation and then
     #                 fill in the vector permutation_statistics with the
     #                 value of statistic(...) for this new permutation
+    new_data <- randomize(d, var)
+    permutation_statistics[i] <- statistic(new_data, var, grouping_var, group1, group2)
   }
   result <- list(observed=observed_statistic,
                  permuted=permutation_statistics)
   return(result)
 }
+

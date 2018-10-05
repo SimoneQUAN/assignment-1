@@ -28,20 +28,50 @@ fake_data_set <- tibble::data_frame(`Fake measurement`=fake_data_points)
 ggplot2::ggplot(fake_data_set, ggplot2::aes(x=`Fake measurement`)) + ggplot2::geom_histogram(bins=5, colour="black", fill="lightgrey")
 ```
 
-Statement 1. pass
+#### Statement 1. 
+Pass
   
-Statement 2. this assignment is exactely like the first line, which creates a vector of numbers (floats) called "outcome_probabilities". I think it contains all the probabilities for each possible outcome in the first line, because it's called "outcome_probabilities", its length is exactly like the first vector, these numbers are between 0 and 1, and their sum equals 1.
 
-Statement 3. this line creates a new varaible "n_data_points" and sets its value as 400. Maybe this variable is for 400 distributions of the possible outcomes.
+#### Statement 2. 
+This assignment is exactely like the first line, which creates a vector of numbers (floats) called "outcome_probabilities". I think it contains all the probabilities for each possible outcome in the first line, because it's called "outcome_probabilities", its length is exactly like the first vector, these numbers are between 0 and 1, and their sum equals 1.
 
-Statement 4. this statement 
 
-Statement 5
+#### Statement 3. 
+This line creates a new varaible "n_data_points" and sets its value as 400. Maybe this variable is for 400 distributions of the possible outcomes.
 
-Statement 6
+
+#### Statement 4. 
+The function set.seed() is the step before getting a ramdom number from the computer. If we demand the computer to give us a random number, actually it is not really 'random' (the numbers has been already stored in the computer, we just need to tell the computer from which number to get). If we set a same seed to start the randomizing procedures, the numbers we generate will be exactly the same, with a different or not computer. This can be tested by the function rnorm() : we can see that the first two results are same, meanwhile the third is different.
+
+```{r}
+set.seed(0)
+rnorm(10)
+set.seed(0)
+rnorm(10)
+set.seed(1)
+rnorm(10)
+```
+
+
+#### Statement 5. 
+The function sample() is like to randomly take balls out of an intransparent bag. When we take out a ball, it can be put back or not.
+The function is at the form of sample(x, size, replace = FALSE, prob = NULL), where x is the dataset (bag of balls), size is the number of samples (balls to take out), and if replace = F, we will not put back the ball. prob is the probability to get a certain color.
+So in this function :
+fake_data_points <- sample(possible_outcomes,
+                           n_data_points,
+                           replace=T,
+                           prob=outcome_probabilities),
+we will take number=n_data_points (400) samples from the vector "possible_outcomes", and one outcome could be taken multiple times. The probability of each outcome to be taken is indicated in "outcome_probabilities".
+
+
+#### Statement 6.
+fake_data_set <- tibble::data_frame(`Fake measurement`=fake_data_points)
+In the help, data_frame is lst {tibble} ; but data.frame is data.frame {base}.
+"tibble" is a library, so data_frame is a function from this library. It inherits from data.frame, which is a special kind of list of list (the type of the elements of a same column should be the same, and the number of elements of each colume should also be the same). So I guess that this function will turn a list of numbers "fake_data_points" to a data frame with only one column, which is the result of sampling 400 possible outcomes.
 
 
 ## Exercice 3: More R programming
+
 
 ### Sub-exercise 3-a
 
@@ -57,6 +87,7 @@ print(sum_column(iris, "Species"))
 print(sum_column(warpbreaks, "breaks"))
 ```
 
+
 ### Sub-exercise 3-b
 Test the function "my_sum(x)"
 ```{r}
@@ -64,6 +95,7 @@ print(my_sum(iris$Sepal.Length))
 print(my_sum(iris$Species))
 print(my_sum(warpbreaks$breaks))
 ```
+
 
 ### Sub-exercise 3-c
 Test the function "sum_diveded_by(x, k)"
@@ -73,6 +105,7 @@ print(sum_divided_by(iris$Species, 22))
 print(sum_divided_by(iris$Sepal.Length, "Not numeric"))
 print(sum_divided_by(warpbreaks$breaks, -12))
 ```
+
 
 ### Sub-exercise 3-d
 Test the function "my_mean(x)"
@@ -85,10 +118,12 @@ print(my_mean(warpbreaks$breaks))
 
 ## Exercice 4
 
+
 ### Sub-exercise 4-a
 ```{r}
 print(grouped_violin_plot(iris, "Sepal.Length", "Species"))
 ```
+
 
 ### Sub-exercise 4-b
 ```{r}
@@ -105,11 +140,13 @@ print(p)
 
 ## Exercice 5
 
+
 ### Sub-exercise 5-a
 ```{r}
 difference_in_medians(iris, "Sepal.Width", "Species", "versicolor", "virginica")
 difference_in_medians(iris, "Sepal.Width", "Species", "virginica", "virginica")
 ```
+
 
 ### Sub-exercise 5-b
 ```{r}
@@ -122,6 +159,7 @@ randomize(iris, "Species")$Species[1:10]
 randomize(iris, "Species")$Sepal.Width[1:10]
 set.seed(previous_seed)
 ```
+
 
 ### Sub-exercise 5-c
 ```{r}
@@ -137,13 +175,16 @@ print(ptest_2)
 print(ptest_3)
 print(ptest_3$observed)
 print(ptest_3[["observed"]])
-
 ```
 
+
 ### Sub-exercise 5-d
+
+
+
 ### Sub-exercise 5-e
 
-```{r}
+```{r, cache=T}
 if(!exists(".Random.seed")) set.seed(NULL)
 previous_seed <- .Random.seed
 set.seed(1)
@@ -153,7 +194,9 @@ set.seed(previous_seed)
 
 ```{r}
 ptest_d <- tibble::as_tibble(ptest["permuted"])
+observed_value <- ptest["observed"]
 # YOUR CODE HERE: plot a histogram with a vertical line at the observed value
+
 
 ```
 
